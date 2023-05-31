@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import { saveUser } from "./user.store";
 
 
@@ -17,13 +18,17 @@ export const loginUser = (userDetails: any) => {
         
         if(userRes){
             
-        const {userData, status} = await userRes.json();
-        
-        console.log('userData',userData.userData)
+        const {userData, status, msg} = await userRes.json();
+     
         if(status === 200){
+               
+             console.log('userData',userData)
             dispatch(saveUser({userData}))
+            {userData.type == 'admin' && (
+                <Navigate to="/admin" replace={true} />
+              )}
         }else {
-            console.log('res err', userData)
+            console.log('res err', msg)
         }
         }
     }
