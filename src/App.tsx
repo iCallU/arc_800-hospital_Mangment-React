@@ -7,7 +7,7 @@ function App() {
 
   const { userData } = useSelector((state: any) => state.user);
 
-  console.log("userData123", userData);
+  console.log("userData1", userData);
 
 
  
